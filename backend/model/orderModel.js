@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 
 
+
 // Define the pizza schema
 const pizzaSchema = new mongoose.Schema({
     user:{
@@ -10,7 +11,10 @@ type: mongoose.Schema.Types.ObjectId,
   ref:'User'
     },
    
-   
+   pizzaId :{
+type: Number,
+required: true,
+   },
   name: {
     type: String,
     required: true,

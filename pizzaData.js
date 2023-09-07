@@ -2,6 +2,7 @@
 
 const pizzaData = [
     {
+        pizzaId: "1",
       name: "Veggie Pizza",
       varients: ["small", "medium", "large"],
       prices: [
@@ -14,6 +15,7 @@ const pizzaData = [
       description: "Mushrooms Broccoli Olives Peppers Cheese",
     },
     {
+        pizzaId: "2",
       name: "Meat Pizza",
       varients: ["small", "medium", "large"],
       prices: [
@@ -26,6 +28,7 @@ const pizzaData = [
       description: "Sausages Chicken BBQ Cheese",
     },
     {
+        pizzaId: "3",
       name: "Philly Cheese Steak Pizza",
       varients: ["small", "medium", "large"],
       prices: [
@@ -38,6 +41,7 @@ const pizzaData = [
       description: "Philly Cheese Steak Cheese",
     },
     {
+        pizzaId: "4",
       name: "Honolulu Hawaiian Pizza",
       varients: ["small", "medium", "large"],
       prices: [
@@ -50,6 +54,7 @@ const pizzaData = [
       description: "Pineapple Peppers Cheese",
     },
     {
+        pizzaId: "5",
       name: "Cheese Pizza",
       varients: ["small", "medium", "large"],
       prices: [
@@ -62,6 +67,7 @@ const pizzaData = [
       description: "Cheese",
     },
     {
+        pizzaId: "6",
       name: "Buffalo Chicken Pizza",
       varients: ["small", "medium", "large"],
       prices: [
