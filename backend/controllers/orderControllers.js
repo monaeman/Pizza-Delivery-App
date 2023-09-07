@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler')
 
 const Order = require('../model/orderModel')
-
+const User = require('../model/userModel')
 //@desc  Get orders
 //@route  Get /api/orders
 //@access  Private
@@ -40,6 +40,17 @@ const updateOrders = asyncHandler(async(req, res) => {
     if(!goal){
         res.status(400)
         throw new Error('Order not found')
+    }
+//check for user
+    const user = await User.findById(req.user.id)
+    if(!user){
+        res.status(401)
+        throw new Error('User not found')
+    }
+    //Make sure the logged in user matches the order user
+    if(order.user.toString() !== user.id){
+        res.status(401)
+        throw new Error ('user not authorized')
     }
     const updatedOrder = await Order.findByIdUpdate(req.params.id, req.body, {
         new: true,

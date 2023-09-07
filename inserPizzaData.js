@@ -1,5 +1,5 @@
 // Import the Pizza model and pizzaData
-const Pizza = require("./pizzaModel");
+const Pizza = require('./backend/model/orderModel')
 const pizzaData = require("./pizzaData");
 
 // Function to insert pizza data into the database
