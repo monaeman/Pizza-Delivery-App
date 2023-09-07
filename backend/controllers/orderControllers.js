@@ -1,12 +1,15 @@
 const asyncHandler = require('express-async-handler')
 
+const Order = require('../model/orderModel')
+
 //@desc  Get orders
 //@route  Get /api/orders
 //@access  Private
 
 
 const getOrders = asyncHandler(async (req, res) => {
-    res.status(200).json({message:'Get orders'})
+    const orders = await Order.find()
+    res.status(200).json(orders)
 })
 
 //@desc  POST orders
@@ -19,7 +22,10 @@ const setOrders = asyncHandler(async(req, res) => {
         throw new Error('Please add a text field')
 
     }
-    res.status(200).json({message:'Set orders'})
+    const order = await Order.create({
+        text: req.body.text
+    })
+    res.status(200).json(order)
    
 })
 
@@ -29,7 +35,16 @@ const setOrders = asyncHandler(async(req, res) => {
 //@access  Private
 
 const updateOrders = asyncHandler(async(req, res) => {
-    res.status(200).json({message:`update order ${req.params.id}`})
+
+    const order = await Order.findById(req.params.id)
+    if(!goal){
+        res.status(400)
+        throw new Error('Order not found')
+    }
+    const updatedOrder = await Order.findByIdUpdate(req.params.id, req.body, {
+        new: true,
+    } )
+    res.status(200).json(updatedOrder)
 })
 //@desc  delete orders
 //@route  delete /api/orders/:id
