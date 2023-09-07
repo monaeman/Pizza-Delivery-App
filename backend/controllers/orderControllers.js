@@ -49,6 +49,18 @@ const updateOrders = asyncHandler(async(req, res) => {
     }
     //Make sure the logged in user matches the order user
     if(order.user.toString() !== user.id){
+//check for user
+const user = await User.findById(req.user.id)
+if(!user){
+    res.status(401)
+    throw new Error('User not found')
+}
+//Make sure the logged in user matches the order user
+if(order.user.toString() !== user.id){
+    res.status(401)
+    throw new Error ('user not authorized')
+}
+
         res.status(401)
         throw new Error ('user not authorized')
     }
