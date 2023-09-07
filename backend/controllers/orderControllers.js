@@ -8,7 +8,7 @@ const User = require('../model/userModel')
 
 
 const getOrders = asyncHandler(async (req, res) => {
-    const orders = await Order.find()
+    const orders = await Order.find({ user: req.user.id})
     res.status(200).json(orders)
 })
 
