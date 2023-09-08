@@ -1,106 +1,131 @@
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require('express-async-handler');
+// Import pizzaData if needed
+ const pizzaData = require('../model/pizzaData')
 
-const Order = require('../model/orderModel')
-const User = require('../model/userModel')
-//@desc  Get orders
-//@route  Get /api/orders
-//@access  Private
+const Order = require('../model/orderModel');
+const user = require('../model/userModel');
 
-//get an order
+//@desc Get orders
+//@route GET /api/orders
+//@access Private
+
 const getOrders = asyncHandler(async (req, res) => {
-    const orders = await Order.find({ user: req.user.id})
-    res.status(200).json(orders)
-})
+ // const orders = await Order.find({ user: req.user.id });
+ const orders = await Order.find({})
+  res.status(200).json(orders);
+});
 
-//@desc  POST orders
-//@route   /api/orders
-//@access  Private
-//create an order
+//@desc POST orders
+//@route POST /api/orders
+//@access Private
+// Create an order
 const setOrders = asyncHandler(async (req, res) => {
-    const { pizzaId } = req.body; // Assuming the client sends the selected pizza's id
-  
-    if (!pizzaId) {
-      res.status(400);
-      throw new Error('Please provide a valid pizza ID selection');
-    }
-  
-    // Find the selected pizza in your data file by its id
-    const selectedPizza = pizzaData.find((pizza) => pizza.id === pizzaId);
-  
-    if (!selectedPizza) {
-      res.status(404);
-      throw new Error('Pizza not found');
-    }
-  
-    // Create an order with the selected pizza
-    const order = await Order.create({
-        user: req.user.id,
-      pizza: selectedPizza,
-    });
-  
-    res.status(200).json(order);
-  });
+  const {  name, varients, prices } = req.body;
+
+  console.log(req.body)
+const order = await Order.create({
+    name, 
+    varients,
+    prices
+})
+console.log(order)
+
+  res.status(200).json({message: 'setOrder'});
+});
+
+//@desc Update orders
+//@route PUT /api/orders/:id
+//@access Private
+
+// const updateOrders = asyncHandler(async (req, res) => {
+//   const order = await Order.findById(req.params.id);
+
+//   if (!order) {
+//     res.status(404);
+//     throw new Error('Order not found');
+//   }
+
+//   // Check if the logged-in user matches the order user
+//   if (order.user.toString() !== req.user.id) {
+//     res.status(401);
+//     throw new Error('User not authorized');
+//   }
+
+//   // Update the order fields based on your order model
+//   order.pizzaId = req.body.pizzaId;
+//   order.name = req.body.name;
+//   order.varients = req.body.varients;
+//   order.prices = req.body.prices;
+
+//   const updatedOrder = await order.save();
+
+//   res.status(200).json(updatedOrder);
+// });
+
+const updateOrders = asyncHandler(async (req, res) => {
+    // const goal = await Goal.findById(req.params.id)
+   
+    //  if (!order) {
+    //    res.status(400)
+    //    throw new Error('Order not found')
+    //  }
+   //find the ID
+   
+    //  // Check for user
+    //  if (!req.user) {
+    //    res.status(401)
+    //    throw new Error('User not found')
+    //  }
+   
+    //  // Make sure the logged in user matches the order user
+    //  if (order.user.toString() !== req.user.id) {
+    //    res.status(401)
+    //    throw new Error('User not authorized')
+    //  }
+   
+     const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, {
+       new: true,
+      
+     })
+     console.log(updatedOrder)
+   
+     res.status(200).json(updatedOrder)
+   })
+   
 
 
-//@desc  Get orders
-//@route  put /api/orders/:id
-//@access  Private
-
-const updateOrders = asyncHandler(async(req, res) => {
-
-    const order = await Order.findById(req.params.id)
-    if(!order){
-        res.status(400)
-        throw new Error('Order not found')
-    }
-//check for userlogin matches the order
-    const user = await User.findById(req.user.id)
-    if(!user){
-        res.status(401)
-        throw new Error('User not found')
-    }
-    //Make sure the logged in user matches the order user
-    if(order.user.toString() !== user.id){
-// Check if the logged-in user matches the order user
-if (order.user.toString() !== req.user.id) {
-    res.status(401);
-    throw new Error('User not authorized');
-  }
-
-  const updatedOrder = await Order.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
-
-  res.status(200).json(updatedOrder);
-    }})
-//@desc  delete orders
-//@route  delete /api/orders/:id
-//@access  Private
+//@desc Delete orders
+//@route DELETE /api/orders/:id
+//@access Private
 
 // Delete an order
 const deleteOrders = asyncHandler(async (req, res) => {
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id)
   
-    if (!order) {
-      res.status(404);
-      throw new Error('Order not found');
-    }
+    // if (!order) {
+    //   res.status(400)
+    //   throw new Error('Goal not found')
+    // }
   
-    // Check if the logged-in user matches the order user
-    if (order.user.toString() !== req.user.id) {
-      res.status(401);
-      throw new Error('User not authorized');
-    }
+    // // Check for user
+    // if (!req.user) {
+    //   res.status(401)
+    //   throw new Error('User not found')
+    // }
   
-    await order.remove();
-    res.status(200).json({ message: 'Order deleted' });
-  });
+    // // Make sure the logged in user matches the goal user
+    // if (order.user.toString() !== req.user.id) {
+    //   res.status(401)
+    //   throw new Error('User not authorized')
+    // }
   
-  module.exports = {
-    getOrders,
-    setOrders,
-    updateOrders,
-    deleteOrders,
-  };
+  await Order.findByIdAndRemove(req.params.id)
+  
+    res.status(200).json({ id: req.params.id })
+  })
+module.exports = {
+  getOrders,
+  setOrders,
+  updateOrders,
+  deleteOrders,
+};
