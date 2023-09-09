@@ -20,12 +20,13 @@ function Dashboard() {
   
   useEffect(()=> {
     if(isError){
-      console.log(message);
+      //console.log(message);
     }
     if(!user){
       navigate('/login')
-    }
+    }else{
     dispatch(getOrders())
+  };
     return() => {
       dispatch(reset())
     }
@@ -39,17 +40,18 @@ if(isLoading){
     <section className="heading">
 <h1>Welcome {user && user.name}</h1>
 <p>Order Dashboard</p>
+</section>
 <OrderForm />
-<section className="content"></section>
+<section className="content">
 {orders.length > 0 ? (
   <div className="orders">
     {orders.map((order) => (
       <OrderItem  key={order._id} order={order}/>
     ))}
   </div>
-) : (<h3> you have not set any orders </h3>) }
-    </section>
-   
+) : ( <h3> you have not set any orders </h3>)}
+    
+ </section>
   </>
 }
 
