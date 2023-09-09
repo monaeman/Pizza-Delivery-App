@@ -17,7 +17,7 @@ type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   varients: {
-    type: [String],
+    type: String,
     required: true,
   },
   prices: 
