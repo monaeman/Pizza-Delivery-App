@@ -4,6 +4,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import OrderForm from '../components/OrderForm'
 import Spinner from '../components/Spinner'
 import {getOrders, reset} from '../features/orders/orderSlice'
+import OrderItem from '../components/OrderItem'
+
 
 
 
@@ -38,6 +40,14 @@ if(isLoading){
 <h1>Welcome {user && user.name}</h1>
 <p>Order Dashboard</p>
 <OrderForm />
+<section className="content"></section>
+{orders.length > 0 ? (
+  <div className="orders">
+    {orders.map((order) => (
+      <OrderItem  key={order._id} order={order}/>
+    ))}
+  </div>
+) : (<h3> you have not set any orders </h3>) }
     </section>
    
   </>
