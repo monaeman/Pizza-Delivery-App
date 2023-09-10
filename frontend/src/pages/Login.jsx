@@ -1,60 +1,67 @@
-import { useState, useEffect } from 'react'
-import { FaSignInAlt } from 'react-icons/fa'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { login, reset } from '../features/auth/authSlice'
-import Spinner from '../components/Spinner'
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import { FaSignInAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {login , reset} from '../features/auth/authSlice'
+import { toast } from 'react-toastify';
+import Spinner from '../components/Spinner'; // Import your Spinner component here
 
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-  })
+  });
 
-  const { email, password } = formData
+  const [showDescription, setShowDescription] = useState(false);
+  const [descriptionText, setDescriptionText] = useState('');
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { email, password } = formData;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
-  )
+  );
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message);
     }
 
     if (isSuccess || user) {
-      navigate('/')
+      navigate('/');
     }
 
-    dispatch(reset())
-  }, [user, isError, isSuccess, message, navigate, dispatch])
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const userData = {
       email,
       password,
-    }
+    };
 
-    dispatch(login(userData))
-  }
+    dispatch(login(userData));
+  };
+
+  const toggleDescription = (description) => {
+    setDescriptionText(description);
+    setShowDescription(!showDescription);
+  };
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   return (
@@ -67,6 +74,7 @@ function Login() {
       </section>
 
       <section className='form'>
+        {/* Your login form code here */}
         <form onSubmit={onSubmit}>
           <div className='form-group'>
             <input
@@ -90,43 +98,129 @@ function Login() {
               onChange={onChange}
             />
           </div>
-
           <div className='form-group'>
-            <button type='submit' className='btn btn-block'>
+            <button type='submit' className='btn btn-block btn-primary'>
               Submit
             </button>
           </div>
         </form>
       </section>
+
+      {/* Pizza Images */}
       <section className='pizza-images'>
-  <div className='pizza-group'>
-    <div className='pizza-image'>
-      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_MX.jpg" alt="Pizza 1" width="200" height="150" />
-    </div>
-    <div className='pizza-image'>
-      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_ZZ.jpg" alt="Pizza 2" width="200" height="150" />
-    </div>
-    <div className='pizza-image'>
-      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZPH.jpg" alt="Pizza 3" width="200" height="150" />
-    </div>
-  </div>
+        <div className='container'>
+          <div className='row'>
+            {/* First Column */}
+            <div className='col-md-4'>
+              <div className='pizza-image'>
+                <img
+                  src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_MX.jpg"
+                  alt="Pizza 1"
+                  width="200"
+                  height="150"
+                  onClick={() =>
+                    toggleDescription('Description for Pizza 1 goes here.')
+                  }
+                />
+                {showDescription && (
+                  <div className='pizza-description'>{descriptionText}</div>
+                )}
+              </div>
+            </div>
 
-  <div className='pizza-group'>
-    <div className='pizza-image'>
-      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZCZ.jpg" alt="Pizza 1" width="200" height="150" />
-    </div>
-    <div className='pizza-image'>
-      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZUH.jpg" alt="Pizza 2" width="200" height="150" />
-    </div>
-    <div className='pizza-image'>
-      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZBP.jpg" alt="Pizza 3" width="200" height="150" />
-    </div>
-  </div>
-  {/* Add more pizza groups as needed */}
-</section>
+            <div className='col-md-4'>
+              <div className='pizza-image'>
+                <img
+                  src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZPH.jpg"
+                  alt="Pizza 2"
+                  width="200"
+                  height="150"
+                  onClick={() =>
+                    toggleDescription('Description for Pizza 2 goes here.')
+                  }
+                />
+                {showDescription && (
+                  <div className='pizza-description'>{descriptionText}</div>
+                )}
+              </div>
+            </div>
 
+            <div className='col-md-4'>
+              <div className='pizza-image'>
+                <img
+                  src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZUH.jpg"
+                  alt="Pizza 3"
+                  width="200"
+                  height="150"
+                  onClick={() =>
+                    toggleDescription('Description for Pizza 3 goes here.')
+                  }
+                />
+                {showDescription && (
+                  <div className='pizza-description'>{descriptionText}</div>
+                )}
+              </div>
+            </div>
+
+             {/* Second Row */}
+          <div className='row'>
+            {/* First Column */}
+            <div className='col-md-4'>
+              <div className='pizza-image'>
+                <img
+                  src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZCZ.jpg"
+                  alt="Pizza 4"
+                  width="200"
+                  height="150"
+                  onClick={() =>
+                    toggleDescription('Description for Pizza 4 goes here.')
+                  }
+                />
+                {showDescription && (
+                  <div className='pizza-description'>{descriptionText}</div>
+                )}
+              </div>
+            </div>
+
+            <div className='col-md-4'>
+              <div className='pizza-image'>
+                <img
+                  src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZBP.jpg"
+                  alt="Pizza 5"
+                  width="200"
+                  height="150"
+                  onClick={() =>
+                    toggleDescription('Description for Pizza 5 goes here.')
+                  }
+                />
+                {showDescription && (
+                  <div className='pizza-description'>{descriptionText}</div>
+                )}
+              </div>
+            </div>
+
+            <div className='col-md-4'>
+              <div className='pizza-image'>
+                <img
+                  src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_MX.jpg"
+                  alt="Pizza 6"
+                  width="200"
+                  height="150"
+                  onClick={() =>
+                    toggleDescription('Description for Pizza 6 goes here.')
+                  }
+                />
+                {showDescription && (
+                  <div className='pizza-description'>{descriptionText}</div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;
