@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -96,6 +98,16 @@ function Login() {
           </div>
         </form>
       </section>
+      <section className='pizza-images'>
+                {/* Add pizza images here */}
+                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_MX.jpg" alt="Pizza 1" width="200" height="150" />
+                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_ZZ.jpg" alt="Pizza 2" width="200" height="150" />
+                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZPH.jpg" alt="Pizza 3" width="200" height="150" />
+                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZCZ.jpg" alt="Pizza 1" width="200" height="150" />
+                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZUH.jpg" alt="Pizza 2" width="200" height="150" />
+                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZBP.jpg" alt="Pizza 3" width="200" height="150" />
+                {/* Add more pizza images as needed */}
+            </section>
     </>
   )
 }

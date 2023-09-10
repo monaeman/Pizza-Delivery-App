@@ -95,6 +95,21 @@ export const orderSlice = createSlice({
             state.isError = true
             state.message = action.payload
         })
+        .addCase(deleteOrder.pending, (state) => {
+            state.isLoading = true
+          })
+          .addCase(deleteOrder.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.orders = state.orders.filter(
+              (order) => order._id !== action.payload.id
+            )
+          })
+          .addCase(deleteOrder.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+          })
 
     }
 })

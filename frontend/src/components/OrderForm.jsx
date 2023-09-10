@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import { useDispatch} from 'react-redux'
 import {createOrder} from '../features/orders/orderSlice'
 
 
@@ -10,7 +10,7 @@ const [name, setName] = useState('');
     const [variants, setVariants] = useState('');
     const [prices, setPrices] = useState('');
 
-    const [text, setText] = useState('')
+    //const [text, setText] = useState('')
 
     const dispatch = useDispatch()
     const onSubmit = e => {
@@ -20,7 +20,7 @@ const [name, setName] = useState('');
             name,
             variants,
             prices,
-            text,
+            
         };
 
         // Dispatch the action with the form data
@@ -30,16 +30,16 @@ const [name, setName] = useState('');
         setName('');
         setVariants('');
         setPrices('');
-        setText('');
+        //setText('');
     };
   return (
     <section className ='form'>
         <form onSubmit={onSubmit}>
             <div className="form-group">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Pizza of choice</label>
                     <input
                         type="text"
-                        name="name"
+                        name="Pizza of choice"
                         id="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
