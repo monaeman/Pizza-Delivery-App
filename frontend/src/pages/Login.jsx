@@ -119,7 +119,7 @@ function Login() {
                   width="200"
                   height="150"
                   onClick={() =>
-                    toggleDescription('Description for Pizza 1 goes here.')
+                    toggleDescription('Veggie Pizza : Mushrroms Broccoli Olives and Peppers')
                   }
                 />
                 {showDescription && (
@@ -136,7 +136,7 @@ function Login() {
                   width="200"
                   height="150"
                   onClick={() =>
-                    toggleDescription('Description for Pizza 2 goes here.')
+                    toggleDescription('Meat Pizza : Sausages Chicken BBQ Pizza')
                   }
                 />
                 {showDescription && (
@@ -153,7 +153,7 @@ function Login() {
                   width="200"
                   height="150"
                   onClick={() =>
-                    toggleDescription('Description for Pizza 3 goes here.')
+                    toggleDescription('Philly Cheese Steak Pizza')
                   }
                 />
                 {showDescription && (
@@ -173,7 +173,7 @@ function Login() {
                   width="200"
                   height="150"
                   onClick={() =>
-                    toggleDescription('Description for Pizza 4 goes here.')
+                    toggleDescription('Pinnapple Peppers Cheese Pizza')
                   }
                 />
                 {showDescription && (
@@ -190,7 +190,7 @@ function Login() {
                   width="200"
                   height="150"
                   onClick={() =>
-                    toggleDescription('Description for Pizza 5 goes here.')
+                    toggleDescription('Cheese Pizza.')
                   }
                 />
                 {showDescription && (
@@ -207,7 +207,7 @@ function Login() {
                   width="200"
                   height="150"
                   onClick={() =>
-                    toggleDescription('Description for Pizza 6 goes here.')
+                    toggleDescription('Buffalo Chicken Pizza ')
                   }
                 />
                 {showDescription && (
