@@ -99,15 +99,32 @@ function Login() {
         </form>
       </section>
       <section className='pizza-images'>
-                {/* Add pizza images here */}
-                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_MX.jpg" alt="Pizza 1" width="200" height="150" />
-                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_ZZ.jpg" alt="Pizza 2" width="200" height="150" />
-                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZPH.jpg" alt="Pizza 3" width="200" height="150" />
-                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZCZ.jpg" alt="Pizza 1" width="200" height="150" />
-                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZUH.jpg" alt="Pizza 2" width="200" height="150" />
-                <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZBP.jpg" alt="Pizza 3" width="200" height="150" />
-                {/* Add more pizza images as needed */}
-            </section>
+  <div className='pizza-group'>
+    <div className='pizza-image'>
+      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_MX.jpg" alt="Pizza 1" width="200" height="150" />
+    </div>
+    <div className='pizza-image'>
+      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_ZZ.jpg" alt="Pizza 2" width="200" height="150" />
+    </div>
+    <div className='pizza-image'>
+      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZPH.jpg" alt="Pizza 3" width="200" height="150" />
+    </div>
+  </div>
+
+  <div className='pizza-group'>
+    <div className='pizza-image'>
+      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZCZ.jpg" alt="Pizza 1" width="200" height="150" />
+    </div>
+    <div className='pizza-image'>
+      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZUH.jpg" alt="Pizza 2" width="200" height="150" />
+    </div>
+    <div className='pizza-image'>
+      <img src="https://cache.dominos.com/olo/6_116_2/assets/build/market/US/_en/images/img/products/larges/S_PIZBP.jpg" alt="Pizza 3" width="200" height="150" />
+    </div>
+  </div>
+  {/* Add more pizza groups as needed */}
+</section>
+
     </>
   )
 }

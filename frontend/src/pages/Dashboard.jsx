@@ -40,7 +40,7 @@ console.log(orders);
   return ( <>
     <section className="heading">
 <h1>Welcome {user && user.name}</h1>
-<p>Order Dashboard</p>
+<p>Order your Pizza</p>
 </section>
 <OrderForm />
 <section className="content">
