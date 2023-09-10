@@ -61,7 +61,7 @@ const [name, setName] = useState('');
                         type="text"
                         name="prices"
                         id="prices"
-                        value={prices}
+                        value={ prices}
                         onChange={(e) => setPrices(e.target.value)}
                     />
             </div>
