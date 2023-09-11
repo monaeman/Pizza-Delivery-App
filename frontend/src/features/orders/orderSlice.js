@@ -76,11 +76,15 @@ export const updateOrder = createAsyncThunk(
   }
 );
 
+
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: (state) => {
+      state = initialState;
+      localStorage.setItem('orders', JSON.stringify([])); // Clear local storage
+    },
   },
   extraReducers: (builder) => {
     builder

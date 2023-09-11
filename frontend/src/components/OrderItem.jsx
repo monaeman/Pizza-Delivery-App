@@ -1,3 +1,5 @@
+// OrderItem.jsx
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteOrder, updateOrder } from '../features/orders/orderSlice';
@@ -23,11 +25,29 @@ function OrderItem({ order }) {
         },
       })
     );
+
+    // Update the local storage as well
+    const updatedOrders = JSON.parse(localStorage.getItem('orders')).map((order) =>
+      order._id === id
+        ? { ...order, name: newName, variants: newVariants, prices: newPrices }
+        : order
+    );
+
+    localStorage.setItem('orders', JSON.stringify(updatedOrders));
+
     setIsEditing(false); // Exit edit mode after updating
   };
 
   const onDeleteClick = (id) => {
+    // Dispatch the deleteOrder action
     dispatch(deleteOrder(id));
+
+    // Remove the deleted order from local storage
+    const updatedOrders = JSON.parse(localStorage.getItem('orders')).filter(
+      (order) => order._id !== id
+    );
+
+    localStorage.setItem('orders', JSON.stringify(updatedOrders));
   };
 
   const handleEditClick = () => {
