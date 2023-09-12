@@ -76,25 +76,29 @@ label {
   padding: 20px 0;
   border-bottom: 1px solid #e6e6e6;
   margin-bottom: 60px;
+  color: white;
 }
 
 .header ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color : white;
 }
 
 .header ul li {
   margin-left: 20px;
+  color : white;
 }
 
 .header ul li a {
+  color: white;
   display: flex;
   align-items: center;
 }
 
 .header ul li a:hover {
-  color: #777;
+  color: white;
 }
 
 .header ul li a svg {
@@ -106,11 +110,13 @@ label {
   font-weight: 700;
   margin-bottom: 50px;
   padding: 0 20px;
+  color : white;
 }
 
 .heading p {
   color: #bbacac;
   font-size: 25px;
+ 
 
 }
 
@@ -167,7 +173,7 @@ label {
   padding: 10px 20px;
   border: 1px solid #000;
   border-radius: 5px;
-  background: #000;
+  background:black;
   color: #fff;
   font-size: 16px;
   font-weight: 700;
@@ -181,6 +187,7 @@ label {
 
 .btn svg {
   margin-right: 8px;
+
 }
 
 .btn-reverse {
@@ -191,7 +198,13 @@ label {
 .btn-block {
   width: 100%;
   margin-bottom: 20px;
+
+
 }
+
+
+
+
 
 .btn:hover {
   transform: scale(0.98);

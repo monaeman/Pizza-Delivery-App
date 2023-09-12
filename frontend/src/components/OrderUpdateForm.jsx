@@ -1,11 +1,19 @@
-// OrderUpdateForm.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateOrder } from '../features/orders/orderSlice';
 
 function OrderUpdateForm({ order, onUpdateComplete }) {
   const [updatedOrder, setUpdatedOrder] = useState(order);
   const dispatch = useDispatch();
+
+  // Use useEffect to dispatch the updateOrder action whenever updatedOrder changes
+  useEffect(() => {
+    dispatch(updateOrder(updatedOrder))
+      .unwrap()
+      .then((updatedOrderData) => {
+        onUpdateComplete(updatedOrderData);
+      });
+  }, [updatedOrder, dispatch, onUpdateComplete]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -16,6 +24,7 @@ function OrderUpdateForm({ order, onUpdateComplete }) {
   };
 
   const handleUpdateClick = () => {
+    // This is where you can perform additional logic if needed before dispatching the updateOrder action
     dispatch(updateOrder(updatedOrder))
       .unwrap()
       .then((updatedOrderData) => {
@@ -43,7 +52,7 @@ function OrderUpdateForm({ order, onUpdateComplete }) {
         value={updatedOrder.prices}
         onChange={handleInputChange}
       />
-      <button onClick={handleUpdateClick} className='update-complete'>
+      <button className='update-complete' onClick={handleUpdateClick}>
         Update Order
       </button>
     </div>

@@ -1,24 +1,27 @@
-// orderSlice.js
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import orderService from './orderService';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import orderService from "./orderService";
+import OrderUpdateForm from "../../components/OrderUpdateForm";
+//import OrderUpdateForm from '../../components/OrderUpdateForm';
 
 const initialState = {
   orders: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
-  message: '',
+  message: "",
 };
 
 export const createOrder = createAsyncThunk(
-  'orders/create',
+  "orders/create",
   async (orderData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
       return await orderService.createOrder(orderData, token);
     } catch (error) {
       const message =
-        (error.response && error.response.data && error.response.data.message) ||
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -26,21 +29,26 @@ export const createOrder = createAsyncThunk(
   }
 );
 
-export const getOrders = createAsyncThunk('orders/getAll', async (_, thunkAPI) => {
-  try {
-    const token = thunkAPI.getState().auth.user.token;
-    return await orderService.getOrders(token);
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
-    return thunkAPI.rejectWithValue(message);
+export const getOrders = createAsyncThunk(
+  "orders/getAll",
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await orderService.getOrders(token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
 export const deleteOrder = createAsyncThunk(
-  'orders/delete',
+  "orders/delete",
   async (id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -59,7 +67,7 @@ export const deleteOrder = createAsyncThunk(
 );
 
 export const updateOrder = createAsyncThunk(
-  'orders/update',
+  "orders/update",
   async (orderData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -76,14 +84,13 @@ export const updateOrder = createAsyncThunk(
   }
 );
 
-
 export const orderSlice = createSlice({
-  name: 'order',
+  name: "order",
   initialState,
   reducers: {
     reset: (state) => {
       state = initialState;
-      localStorage.setItem('orders', JSON.stringify([])); // Clear local storage
+      localStorage.setItem("orders", JSON.stringify([])); // Clear local storage
     },
   },
   extraReducers: (builder) => {
