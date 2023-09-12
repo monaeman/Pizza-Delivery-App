@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import orderService from "./orderService";
-import OrderUpdateForm from "../../components/OrderUpdateForm";
+//import OrderUpdateForm from "../../components/OrderUpdateForm";
 //import OrderUpdateForm from '../../components/OrderUpdateForm';
 
 const initialState = {
