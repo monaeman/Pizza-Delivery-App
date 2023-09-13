@@ -42,5 +42,4 @@ I used Traversy Media " The Mern Stack videos " for refrences
 
 
 ### Trello Board
-[
-](https://trello.com/b/YWFgm60y/pizzadeliveryapp-mern)https://trello.com/b/YWFgm60y/pizzadeliveryapp-mern
+https://trello.com/invite/b/YWFgm60y/ATTIea547ae0dcb5039db491f8e1f8d9d63105275FFF/pizzadeliveryapp-mern 
