@@ -42,20 +42,21 @@ const deleteOrder = async (orderId, token) => {
 };
 
 // Update an existing order
-const updateOrder = async (orderData, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
+const updateOrder = async (orderData) => {
+//   const config = {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   };
+console.log(orderData)
   // Assuming you have an id field in your orderData to specify which order to update
   const orderId = orderData.id;
 
-  // Remove the id field from orderData to prevent it from being sent as a field to update
-  delete orderData.id;
 
-  const response = await axios.put(API_URL + orderId, orderData, config);
+  // Remove the id field from orderData to prevent it from being sent as a field to update
+  //delete orderData.id;
+
+  const response = await axios.put(API_URL + orderId, orderData);
 
   return response.data;
 };

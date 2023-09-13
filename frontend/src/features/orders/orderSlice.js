@@ -70,8 +70,8 @@ export const updateOrder = createAsyncThunk(
   "orders/update",
   async (orderData, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await orderService.updateOrder(orderData, token);
+      //const token = thunkAPI.getState().auth.user.token;
+      return await orderService.updateOrder(orderData);
     } catch (error) {
       const message =
         (error.response &&
@@ -142,11 +142,11 @@ export const orderSlice = createSlice({
       .addCase(updateOrder.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        // Find and update the order in the state's orders array
-        const updatedOrders = state.orders.map((order) =>
-          order._id === action.payload._id ? action.payload : order
-        );
-        state.orders = updatedOrders;
+        // // Find and update the order in the state's orders array
+        // const updatedOrders = state.orders.map((order) =>
+        //   order._id === action.payload._id ? action.payload : order
+        // );
+        // state.orders = updatedOrders;
       })
       .addCase(updateOrder.rejected, (state, action) => {
         state.isLoading = false;
