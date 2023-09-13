@@ -58,6 +58,8 @@ ones logged in user can see the pizza options and can order by typing in the piz
 The "concurrently": "^8.2.1" package is a Node.js module that allows you to run multiple commands concurrently in a single terminal window. It's particularly useful for development workflows where you need to start multiple processes simultaneously, such as running both a front-end and a back-end server for a web application.
 
 
-## Acknowledgments
+## Acknowledgments<img width="745" alt="Screenshot 2023-09-13 at 6 19 41 PM" src="https://github.com/monaeman/Pizza-Delivery-App/assets/78503141/896134ca-1eeb-4041-be2c-166f8b99daf2">
+
 
 I used Traversy Media " The Mern Stack videos " for refrences 
+
